@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container pt-4">
+  <div class="col-lg-4 mx-auto shadow p-0">
+    <div class="alert alert-info">
+      <h2>Last step</h2>
+      <p>we use your profile pic and details on landing page</p>
+      <!-- <p></p> -->
+    </div>
+    <div class="p-4">
+      <form
+        action="/app/gverify/{{user_id}}/"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %} {{img_form.as_p}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

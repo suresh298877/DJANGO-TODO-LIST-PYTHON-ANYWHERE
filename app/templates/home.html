@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="container pt-4">
+        <div class="row p-0 mt-4">
+            <div class="col-lg-4 mx-auto shadow p-0" style="background-color: rgb(137, 193, 241);">
+                <div class="alert alert-info">
+                    <h2>Add New TODO</h2>
+                </div>
+                <div class="p-4">
+                    <form action="/app/add-todo/" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}} 
+                        <button type="submit" class="btn btn-primary" value='ADD'>ADD</button>
+                    </form>
+    
+                </div>
+    
+            </div>
+
+            <div class="col">
+                <div class="border">
+                    {% if todos|length == 0 %}
+                        <div class="alert alert-info" style="margin-bottom: 0;">
+                            <p class="display-4" style="font-size: 30px; text-align: center;">No Todos</p>
+                        </div>
+                    {% else %}
+                    <div>
+                        <table class="table table-bordered table-hover" style="margin-bottom: 0;">
+                            <thead class="alert alert-info">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th><span style="margin-left: 10px;">Action</span></th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="alert alert-info">
+                                
+                                {% for todo in todos %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td > <span {% if todo.status == 'C' %} style="text-decoration: line-through; text-decoration-color: rgb(29, 50, 208);" {% endif %}>🎯 {{ todo.title }}</span></td>
+                                        <td {% if todo.status == 'C' %} title="Completed" {% else %} title="Pending" {% endif %}>
+                                            {% if todo.status == 'C' %}
+                                            ✅
+                                            {% else %}
+                                            ⌛
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ todo.priority }}</td>
+                                        <td>
+                                            <a href="/app/delete_todo/{{ todo.id }}" class="btn " title="Delete">🗑️</a>
+                                            {% if todo.status == 'P' %}
+                                                <a href="/app/change_status/{{ todo.id }}/C" class="btn " title="Mark Completed">✅</a>
+                                            {% else %}
+                                                <a href="/app/change_status/{{ todo.id }}/P" class="btn " title="Mark Pending">⌛</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                    <!-- {% for todo in todos %}
+                    <div class="container pt-4 border">
+                        <p>{{ todo.title }}</p>
+                        <p>{{ todo.status}}</p>
+                        <p>{{todo.priority}}</p>
+                    </div>
+                    {% endfor %} -->
+                    
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

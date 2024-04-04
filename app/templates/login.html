@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container pt-4">
+  <div class="col-lg-4 mx-auto shadow p-0">
+    <div class="alert alert-info">
+      <h2>Login Here</h2>
+      <!-- <p></p> -->
+    </div>
+    <div class="p-4">
+      <form action="/app/login/" method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <span>Not a User!.<a href="/app/signup">Register here</a></span>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

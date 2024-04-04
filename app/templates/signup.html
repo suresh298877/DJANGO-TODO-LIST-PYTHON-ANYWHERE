@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container pt-4">
+  <div class="col-lg-4 mx-auto shadow p-0">
+    <div class="alert alert-info">
+      <h2>Signup Here</h2>
+      <p>Please provide valid gmail.we will send verification link</p>
+      <!-- <p></p> -->
+    </div>
+    <div class="p-4">
+      <form action="/app/signup/" method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Verify</button>
+        <span>Already a User.<a href="/app/login/">Login here</a></span>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
