@@ -184,7 +184,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'suresh.p19212033cvv@gmail.com'
-EMAIL_HOST_PASSWORD = 'hboupubdockdkqcp'  # pass key
+EMAIL_HOST_PASSWORD = 'pjelxiareuxivjqc'  # pass key
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
